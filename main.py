@@ -1,5 +1,6 @@
 import json
-import utils
+import utils_copylot as uc
+import utils_plotly as up
 from copylot import CoPylot
 
 spt_filename = './assets/default.spt'
@@ -13,7 +14,7 @@ r = cp.data_create()
 cp.api_callback_create(r)
 
 # Load spt file
-utils.load_spt_file(spt_filename, cp, r)
+uc.load_spt_file(spt_filename, cp, r)
 
 # Set weather file
 cp.data_set_string(r, 'ambient.0.weather_file', weather_filename)
@@ -37,7 +38,7 @@ rec_width = cp.data_get_number(r, 'receiver.0.rec_width')
 rec_height = cp.data_get_number(r, 'receiver.0.rec_height')
 
 # Flux map figure
-fig = utils.fig_receiver_flux(flux, rec_width, rec_height)
+fig = up.fig_receiver_flux(flux, rec_width, rec_height)
 
 # Show figure
 fig.show()
