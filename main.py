@@ -1,5 +1,4 @@
 import json
-import utils_copylot as uc
 import utils_plotly as up
 from copylot import CoPylot
 
@@ -14,7 +13,8 @@ r = cp.data_create()
 cp.api_callback_create(r)
 
 # Load spt file
-uc.load_spt_file(spt_filename, cp, r)
+if not cp.load_from_script(r, spt_filename):
+    raise Exception('Invalid file or file not found')
 
 # Set weather file
 cp.data_set_string(r, 'ambient.0.weather_file', weather_filename)
